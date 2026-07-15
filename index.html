@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="midnight">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Prompt Studio & Generator Mockup</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script defer src="app.js"></script>
+</head>
+<body>
+    <!-- App Shell -->
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="logo-area">
+                <div class="logo-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                </div>
+                <div>
+                    <h1>Prompt<span>Studio</span></h1>
+                    <p class="subtitle">AI Prompt Constructor & Generation Mockup</p>
+                </div>
+            </div>
+            
+            <div class="header-actions">
+                <!-- Theme Switcher -->
+                <div class="theme-selector-dropdown">
+                    <button class="icon-btn" id="themeBtn" title="Switch Theme">
+                        <svg class="theme-icon-active" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                    </button>
+                    <div class="theme-dropdown-content" id="themeDropdown">
+                        <button class="theme-opt active" data-theme="midnight">
+                            <span class="theme-dot midnight-dot"></span> Midnight Obsidian
+                        </button>
+                        <button class="theme-opt" data-theme="cyberpunk">
+                            <span class="theme-dot cyberpunk-dot"></span> Neon Cyberpunk
+                        </button>
+                        <button class="theme-opt" data-theme="solarized">
+                            <span class="theme-dot solarized-dot"></span> Solarized Light
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- GitHub Badge Link -->
+                <a href="#" class="github-link-btn" id="githubRepoLink" target="_blank">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                    <span>GitHub Repository</span>
+                </a>
+            </div>
+        </header>
+
+        <!-- Main Dashboard Layout -->
+        <main class="dashboard-grid">
+            
+            <!-- Left Panel: Prompt Builder & Controls -->
+            <section class="control-panel glass-card">
+                <div class="section-title">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
+                    <h2>1. Construct Your Prompt</h2>
+                </div>
+
+                <!-- Input area -->
+                <div class="form-group">
+                    <label for="promptInput">Base Idea / Prompt Description</label>
+                    <div class="textarea-wrapper">
+                        <textarea id="promptInput" placeholder="Describe the scene or subject you want to generate (e.g., 'a futuristic sports car on a highway' or 'a serene forest landscape')..." rows="3"></textarea>
+                        <button class="clear-textarea-btn" id="clearPromptBtn" title="Clear input">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Modifier Tags Accordion/Tabs -->
+                <div class="modifiers-container">
+                    <label>Add Modifier Tags (Click to toggle)</label>
+                    
+                    <div class="modifier-tabs">
+                        <button class="tab-btn active" data-tab="style">Style</button>
+                        <button class="tab-btn" data-tab="medium">Medium</button>
+                        <button class="tab-btn" data-tab="lighting">Lighting</button>
+                        <button class="tab-btn" data-tab="camera">Camera</button>
+                        <button class="tab-btn" data-tab="colors">Colors</button>
+                    </div>
+
+                    <div class="tab-content" id="styleTab">
+                        <div class="tag-cloud" id="styleTagsCloud"></div>
+                    </div>
+                    <div class="tab-content hidden" id="mediumTab">
+                        <div class="tag-cloud" id="mediumTagsCloud"></div>
+                    </div>
+                    <div class="tab-content hidden" id="lightingTab">
+                        <div class="tag-cloud" id="lightingTagsCloud"></div>
+                    </div>
+                    <div class="tab-content hidden" id="cameraTab">
+                        <div class="tag-cloud" id="cameraTagsCloud"></div>
+                    </div>
+                    <div class="tab-content hidden" id="colorsTab">
+                        <div class="tag-cloud" id="colorsTagsCloud"></div>
+                    </div>
+                </div>
+
+                <!-- Parameters Section -->
+                <div class="parameters-header" id="parametersToggle">
+                    <div class="section-title-sub">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+                        <span>Generator Parameters</span>
+                    </div>
+                    <svg class="chevron-icon" id="paramChevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                </div>
+
+                <div class="parameters-panel" id="parametersPanel">
+                    <div class="param-grid">
+                        <div class="form-group">
+                            <label for="aspectRatioSelect">Aspect Ratio</label>
+                            <select id="aspectRatioSelect">
+                                <option value="1:1" selected>1:1 (Square)</option>
+                                <option value="16:9">16:9 (Landscape)</option>
+                                <option value="9:16">9:16 (Portrait)</option>
+                                <option value="4:3">4:3 (Standard)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="samplerSelect">Sampler</label>
+                            <select id="samplerSelect">
+                                <option value="Euler a" selected>Euler Ancestral</option>
+                                <option value="DPM++ 2M Karras">DPM++ 2M Karras</option>
+                                <option value="DDIM">DDIM</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="slider-header">
+                            <label for="guidanceScale">Guidance Scale (CFG)</label>
+                            <span class="slider-val" id="guidanceScaleVal">7.5</span>
+                        </div>
+                        <input type="range" id="guidanceScale" min="1" max="20" step="0.5" value="7.5">
+                    </div>
+
+                    <div class="form-group">
+                        <div class="slider-header">
+                            <label for="inferenceSteps">Inference Steps</label>
+                            <span class="slider-val" id="inferenceStepsVal">30</span>
+                        </div>
+                        <input type="range" id="inferenceSteps" min="10" max="150" step="5" value="30">
+                    </div>
+
+                    <div class="form-group">
+                        <div class="slider-header">
+                            <label for="seedInput">Seed</label>
+                            <button class="seed-randomize-btn" id="randomizeSeedBtn" title="Randomize seed">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"></path></svg>
+                            </button>
+                        </div>
+                        <input type="number" id="seedInput" value="-1" placeholder="-1 (Random)">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="negativePromptInput">Negative Prompt</label>
+                        <input type="text" id="negativePromptInput" placeholder="deformed, bad quality, low resolution, blurry..." value="blurry, low quality, distorted, extra limbs">
+                    </div>
+                </div>
+
+                <!-- Compiled Prompt Display -->
+                <div class="compiled-box">
+                    <div class="compiled-header">
+                        <span>Compiled Prompt String</span>
+                        <button class="copy-btn-text" id="copyPromptBtn">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                            <span>Copy</span>
+                        </button>
+                    </div>
+                    <div class="compiled-text" id="compiledPromptDisplay">Write a base idea above or select tags...</div>
+                </div>
+
+                <!-- Generate Trigger Button -->
+                <button class="generate-trigger-btn" id="generateBtn">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                    <span>Generate Mockup Image</span>
+                </button>
+            </section>
+
+            <!-- Right Panel: Generator Canvas Viewport -->
+            <section class="canvas-panel glass-card">
+                <div class="section-title">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+                    <h2>2. Canvas Viewport</h2>
+                </div>
+
+                <div class="canvas-viewport" id="canvasViewport" data-aspect="1:1">
+                    <!-- State 1: Ready / Idle -->
+                    <div class="canvas-state active" id="stateIdle">
+                        <div class="idle-graphic">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+                        </div>
+                        <h3>Ready to Construct</h3>
+                        <p>Write an idea, click on modifier tags, and hit the generate button to simulate the AI rendering process.</p>
+                    </div>
+
+                    <!-- State 2: Generating (Progress/Loading) -->
+                    <div class="canvas-state hidden" id="stateGenerating">
+                        <div class="generating-backdrop" id="generatingBackdrop"></div>
+                        <div class="loader-overlay">
+                            <div class="glowing-spinner"></div>
+                            <div class="step-counter" id="stepCounterDisplay">Step 0/30</div>
+                            <div class="generation-status" id="generationStatusDisplay">Initializing core engine...</div>
+                            <div class="progress-bar-outer">
+                                <div class="progress-bar-inner" id="progressBarInner"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- State 3: Display Image Output -->
+                    <div class="canvas-state hidden" id="stateDisplay">
+                        <img id="generatedImage" src="" alt="Generated AI Graphic">
+                        <div class="canvas-overlay-details">
+                            <div class="display-meta">
+                                <span class="badge" id="displayAspect">1:1</span>
+                                <span class="badge" id="displaySampler">Euler a</span>
+                                <span class="badge" id="displayCfg">CFG: 7.5</span>
+                                <span class="badge" id="displaySteps">Steps: 30</span>
+                                <span class="badge" id="displaySeed">Seed: 918746</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Canvas Actions (Only active when image displays) -->
+                <div class="canvas-actions" id="canvasActions">
+                    <button class="action-btn" id="actionDownload" title="Download Image">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                        <span>Download</span>
+                    </button>
+                    <button class="action-btn" id="actionCopyPrompt" title="Copy Prompt">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                        <span>Copy Prompt</span>
+                    </button>
+                    <button class="action-btn" id="actionSave" title="Save to History">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>
+                        <span>Save to Gallery</span>
+                    </button>
+                </div>
+            </section>
+        </main>
+
+        <!-- Gallery / History Grid -->
+        <section class="gallery-section glass-card">
+            <div class="gallery-header">
+                <div class="section-title">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+                    <h2>Saved Prompt Gallery</h2>
+                </div>
+                
+                <!-- Filters and Search -->
+                <div class="gallery-controls">
+                    <div class="search-box">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                        <input type="text" id="gallerySearch" placeholder="Search prompts or tags...">
+                    </div>
+                    <select id="galleryFilterStyle">
+                        <option value="all">All Styles</option>
+                        <option value="cyberpunk">Cyberpunk</option>
+                        <option value="fantasy">Fantasy</option>
+                        <option value="retro-futurism">Retro-Futurism</option>
+                        <option value="mystic">Mystic</option>
+                        <option value="other">Other/Abstract</option>
+                    </select>
+                    <button class="clear-gallery-btn" id="clearGalleryBtn" title="Clear All History">
+                        Clear Gallery
+                    </button>
+                </div>
+            </div>
+
+            <!-- Grid Container -->
+            <div class="gallery-grid" id="galleryGrid">
+                <!-- Fallback empty state will be injected here if empty -->
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="app-footer">
+            <p>&copy; 2026 PromptStudio. Ready for commit to GitHub. Developed under Antigravity guidelines.</p>
+        </footer>
+    </div>
+
+    <!-- Toast Notifications Container -->
+    <div class="toast-container" id="toastContainer"></div>
+</body>
+</html>
