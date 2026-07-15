@@ -49,7 +49,3 @@ You can host this project online for free using GitHub Pages:
 4. Under **Build and deployment**, set the Source to **Deploy from a branch**.
 5. Select the `master` or `main` branch, set folder to `/ (root)`, and click **Save**.
 6. After a minute, your app will be live at `https://<your-username>.github.io/<your-repo-name>/`!
-
----
-
-*Developed and formatted under Gemini Antigravity Pair-Programming guidelines.*
